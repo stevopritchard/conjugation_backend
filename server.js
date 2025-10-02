@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3001;
 const knex = require('knex');
+// const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -17,23 +18,53 @@ const cors = require('cors');
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1', //localhost
-    port: '5432',
+    host: '127.0.0.1',
+    port: 5432,
     user: 'stephenpritchard',
-    password: '',
-    database: 'verbos',
+    database: 'conjugado',
   },
 });
 
+// const client = new Client({
+//   user: 'stephenpritchard',
+//   database: 'conjugado',
+//   host: 'localhost',
+//   port: 5432,
+// });
+// // Connect to PostgreSQL and start the server
+// (async () => {
+//   try {
+//     await client.connect();
+
+//     const testQuery1 = {
+//       name: 'test1',
+//       text: "SELECT infinitive, infinitive_english FROM infinitive WHERE infinitive LIKE 'ab%'",
+//     };
+
+//     const result = await client.query(testQuery1);
+
+//     console.log(result);
+//   } catch (error) {
+//     console.error('Error starting server:', error);
+//     process.exit(1);
+//   }
+// })();
+
 // app.use(express.urlencoded({extended: false}));
-// app.use(express.json());
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 
 app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
-
+db.raw('SELECT 1')
+  .then(() => {
+    console.log('✅ Database connection is working!');
+  })
+  .catch((err) => {
+    console.error('❌ Database connection failed:', err.message);
+  });
 app.get('/', (req, res) => {
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
