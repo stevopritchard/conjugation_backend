@@ -83,107 +83,111 @@ app.get('/profile/:id', (req, res) => {
   // .catch(err => res.status(400).json('error getting user'))
 });
 
-app.post('/signin', (req, response) => {
+app.post('/api/auth/signin', (req, response) => {
   signin.handleSignIn(req, response, db, bcrypt);
 });
 
-app.post('/register', (req, res) => {
+app.post('/api/auth/register', (req, res) => {
   register.handleRegister(req, res, db, bcrypt, saltRounds);
 });
 
-app.post('/infinitive', (req, res) => {
-  conjugation.getInfinitive(req, res, db);
+app.post('/api/verb/search', (req, res) => {
+  conjugation.search(req, res, db);
 });
 
-app.post('/gerund', (req, res) => {
-  conjugation.getGerund(req, res, db);
+app.post('/api/verb/conjugation', (req, res) => {
+  conjugation.getFullConjugation(req, res, db);
 });
 
-app.post('/past_participle', (req, res) => {
-  conjugation.pastParticiple(req, res, db);
-});
+// app.post('/gerund', (req, res) => {
+//   conjugation.getGerund(req, res, db);
+// });
 
-app.post('/indicative_present', (req, res) => {
-  conjugation.indicativePresent(req, res, db);
-});
+// app.post('/past_participle', (req, res) => {
+//   conjugation.pastParticiple(req, res, db);
+// });
 
-app.post('/indicative_presentperfect', (req, res) => {
-  conjugation.indicativePresentperfect(req, res, db);
-});
+// app.post('/indicative_present', (req, res) => {
+//   conjugation.indicativePresent(req, res, db);
+// });
 
-app.post('/indicative_preterite', (req, res) => {
-  conjugation.indicativePreterite(req, res, db);
-});
+// app.post('/indicative_presentperfect', (req, res) => {
+//   conjugation.indicativePresentperfect(req, res, db);
+// });
 
-app.post('/indicative_pastperfect', (req, res) => {
-  conjugation.indicativePreterite(req, res, db);
-});
+// app.post('/indicative_preterite', (req, res) => {
+//   conjugation.indicativePreterite(req, res, db);
+// });
 
-app.post('/indicative_imperfect', (req, res) => {
-  conjugation.indicativeImperfect(req, res, db);
-});
+// app.post('/indicative_pastperfect', (req, res) => {
+//   conjugation.indicativePreterite(req, res, db);
+// });
 
-app.post('/indicative_conditional', (req, res) => {
-  conjugation.indicativeConditional(req, res, db);
-});
+// app.post('/indicative_imperfect', (req, res) => {
+//   conjugation.indicativeImperfect(req, res, db);
+// });
 
-app.post('/indicative_conditionalperfect', (req, res) => {
-  conjugation.indicativeConditionalperfect(req, res, db);
-});
+// app.post('/indicative_conditional', (req, res) => {
+//   conjugation.indicativeConditional(req, res, db);
+// });
 
-app.post('/indicative_future', (req, res) => {
-  conjugation.indicativeFuture(req, res, db);
-});
+// app.post('/indicative_conditionalperfect', (req, res) => {
+//   conjugation.indicativeConditionalperfect(req, res, db);
+// });
 
-app.post('/indicative_futureperfect', (req, res) => {
-  conjugation.indicativeFutureperfect(req, res, db);
-});
+// app.post('/indicative_future', (req, res) => {
+//   conjugation.indicativeFuture(req, res, db);
+// });
 
-app.post('/imperative_affirmative', (req, res) => {
-  conjugation.imperativeAffirmative(req, res, db);
-});
+// app.post('/indicative_futureperfect', (req, res) => {
+//   conjugation.indicativeFutureperfect(req, res, db);
+// });
 
-app.post('/imperative_negative', (req, res) => {
-  conjugation.imperativeNegative(req, res, db);
-});
+// app.post('/imperative_affirmative', (req, res) => {
+//   conjugation.imperativeAffirmative(req, res, db);
+// });
 
-app.post('/subjunctive_present', (req, res) => {
-  conjugation.subjunctivePresent(req, res, db);
-});
+// app.post('/imperative_negative', (req, res) => {
+//   conjugation.imperativeNegative(req, res, db);
+// });
 
-app.post('/subjunctive_presentperfect', (req, res) => {
-  conjugation.subjunctivePresentperfect(req, res, db);
-});
+// app.post('/subjunctive_present', (req, res) => {
+//   conjugation.subjunctivePresent(req, res, db);
+// });
 
-app.post('/subjunctive_pastperfect', (req, res) => {
-  conjugation.subjunctivePastperfect(req, res, db);
-});
+// app.post('/subjunctive_presentperfect', (req, res) => {
+//   conjugation.subjunctivePresentperfect(req, res, db);
+// });
 
-app.post('/subjunctive_imperfect', (req, res) => {
-  conjugation.subjunctiveImperfect(req, res, db);
-});
+// app.post('/subjunctive_pastperfect', (req, res) => {
+//   conjugation.subjunctivePastperfect(req, res, db);
+// });
 
-app.post('/subjunctive_future', (req, res) => {
-  conjugation.subjunctiveFuture(req, res, db);
-});
+// app.post('/subjunctive_imperfect', (req, res) => {
+//   conjugation.subjunctiveImperfect(req, res, db);
+// });
 
-app.post('/subjunctive_futureperfect', (req, res) => {
-  conjugation.subjunctiveFutureperfect(req, res, db);
-});
+// app.post('/subjunctive_future', (req, res) => {
+//   conjugation.subjunctiveFuture(req, res, db);
+// });
 
-app.post('/favourite_verbs', (req, res) => {
+// app.post('/subjunctive_futureperfect', (req, res) => {
+//   conjugation.subjunctiveFutureperfect(req, res, db);
+// });
+
+app.post('/api/favourite_verbs', (req, res) => {
   verbHandler.favouriteVerbs(req, res, db);
 });
 
-app.post('/check_favourite', (req, res) => {
+app.post('/api/check_favourite', (req, res) => {
   verbHandler.checkFavourite(req, res, db);
 });
 
-app.post('/add_favourite', (req, res) => {
+app.post('/api/add_favourite', (req, res) => {
   verbHandler.addFavourite(req, res, db);
 });
 
-app.post('/remove_favourite', (req, res) => {
+app.post('/api/remove_favourite', (req, res) => {
   verbHandler.removeFavourite(req, res, db);
 });
 
